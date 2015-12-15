@@ -1,0 +1,21 @@
+{
+  "version": "1.7.3",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "outDir": "dist",
+    "sourceMap": true
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "typings/browser/ambient",
+    "typings/browser/definitions",
+    "typings/main/ambient",
+    "typings/main/definitions",
+    "typings/main.d.ts"
+  ]
+}
