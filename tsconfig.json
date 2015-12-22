@@ -16,6 +16,7 @@
     "typings/browser/definitions",
     "typings/main/ambient",
     "typings/main/definitions",
-    "typings/main.d.ts"
+    "typings/main.d.ts",
+    "src/typescript_overrides"
   ]
 }

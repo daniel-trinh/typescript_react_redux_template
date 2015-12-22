@@ -51,13 +51,16 @@
     "rimraf": "^2.4.3",
     "webpack": "^1.12.9",
     "ts-loader": "0.7.2",
-    "typescript": "1.7.3",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
     "serve-static": "1.10.0"
   },
   "dependencies": {
+    "immutable": "^3.7.5",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-addons-pure-render-mixin": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-redux": "^4.0.1",
+    "redux": "^3.0.5"
   }
 }

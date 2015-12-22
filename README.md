@@ -4,7 +4,6 @@ Forked from the original react-transform-boilerplate, except with Typescript Sup
 
 https://github.com/gaearon/react-transform-boilerplate
 
-
 # Instructions
 
 ## Download dependencies
