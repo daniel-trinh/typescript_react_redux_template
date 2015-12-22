@@ -1,6 +1,8 @@
-# Typescript React Transform Boilerplate
+# TypeScript React Transform Boilerplate
 
-Forked from the original react-transform-boilerplate, except with Typescript Support added.
+A base project for new react/redux based projects with TypeScript support.
+
+Forked from the original react-transform-boilerplate, except with TypeScript and redux support added.
 
 https://github.com/gaearon/react-transform-boilerplate
 
