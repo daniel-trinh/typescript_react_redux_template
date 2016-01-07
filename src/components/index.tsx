@@ -6,11 +6,11 @@ import { List, Map, Set, Record } from 'immutable';
 import { Provider } from 'react-redux';
 
 import { App } from './app';
-import { store } from './store';
+import { store } from '../store';
 
 render(
-  <Provider store={store}>
+    <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('root')
+        </Provider>,
+    document.getElementById('root')
 );

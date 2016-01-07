@@ -1,44 +1,55 @@
 import { createStore, Reducer, combineReducers } from 'redux';
-import * as Immutable from 'immutable'
+import * as Immutable from 'immutable';
 import { List, Map, Set, Record } from 'immutable';
+import { reducers } from './reducers';
+import { NICE } from './components/app'
 
 interface Debug {
     isLoading: boolean,
     error?: any
 }
 
-interface Counter {
-    counter: number
+
+interface SubStores {
+    counters: CounterStore
 }
 
-export enum CounterActionTypes {
-    DECREMENT,
-    INCREMENT
+export interface Counter {
+    count?: number,
+    id: string ,
+    intervalPeriod?: number,
+    increment?: number
+    color?: string
 }
 
-export interface CounterAction {
-    type: CounterActionTypes,
-    increment: number
-}
+type Data = Debug & SubStores;
 
-type Data = Debug & Counter;
+export type CounterStore = Map<string, CounterRecord>
+export type CounterRecord = Record.IRecord<Counter>
+export type RootStoreRecord = Record.IRecord<Data>
 
-type DataRecord = Record.IRecord<Data>;
-
-const initialStore = Record<Data>({
+export const InitialStoreClass = Record<Data>({
     isLoading: false,
     error: null,
-    counter: 0
+    counters: Map<string, CounterRecord>()
 });
 
-const reducer = function(state: DataRecord, action: CounterAction): DataRecord {
-    if (action.type === CounterActionTypes.INCREMENT) {
-        return state.set("counter", state.counter + action.increment);
-    } else if (action.type === CounterActionTypes.DECREMENT) {
-        return state.set("counter", state.counter - action.increment);
-    } else {
-        return state;
-    }
-}
 
-export const store = createStore(reducer);
+export const CounterRecordClass = Record<Counter>({
+    count: 0,
+    id: "0",
+    intervalPeriod: 1000,
+    increment: 1,
+    color: NICE
+})
+export const InitialStore = InitialStoreClass();
+
+export interface Todo {
+    id?: number;
+    text: string;
+    completed: boolean;
+};
+
+export type TodoList = Immutable.List<Immutable.Record.IRecord<Todo>>;
+
+export const store = createStore(reducers, InitialStore)

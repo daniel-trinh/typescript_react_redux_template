@@ -1,4 +1,4 @@
-# TypeScript React Transform Boilerplate
+# TypeScript React Redux Transform Boilerplate
 
 A base project for new react/redux based projects with TypeScript support.
 

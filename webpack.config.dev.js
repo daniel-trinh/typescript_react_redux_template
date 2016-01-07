@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/index.tsx'
+    './src/components/index.tsx'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -25,11 +25,6 @@ module.exports = {
       loader: 'babel-loader!ts-loader',
       include: path.join(__dirname, 'src')
     }
-    // {
-    //   test: /\.jsx?$/,
-    //   loaders: ['babel'],
-    //   include: path.join(__dirname, 'src')
-    // }
   ]
   }
 };
