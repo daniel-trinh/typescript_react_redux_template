@@ -12,28 +12,38 @@ export const NICE = 'pink';
 export const SUPER_NICE = 'darkred';
 
 export class App extends Component<any, any> {
+    constructor(props: any) {
+        super(props);
+
+        Store.store.dispatch({
+            type: Actions.CounterType.INSERT,
+            counter: Store.CounterRecordClass({
+                count: 0,
+                id: "1",
+                intervalPeriod: 1000,
+                increment: 1,
+                color: NICE
+            })
+        })
+
+        Store.store.dispatch({
+            type: Actions.CounterType.INSERT,
+            counter: Store.CounterRecordClass({
+                count: 0,
+                id: "2",
+                increment: 5,
+                intervalPeriod: 1000,
+                color: SUPER_NICE
+            })
+        })
+    }
+
     render(): JSX.Element {
         return (
             <div>
-            <Counter counter={
-                Store.CounterRecordClass({
-                    count: 0,
-                    id: "1",
-                    intervalPeriod: 1000,
-                    increment: 1,
-                    color: NICE
-                })
-            } />
-            <Counter counter={
-                Store.CounterRecordClass({
-                    count: 0,
-                    id: "2",
-                    increment: 5,
-                    intervalPeriod: 1000,
-                    color: SUPER_NICE
-                })
-            } />
-                </div>
+                <Counter counterId="1"/>
+                <Counter counterId="2"/>
+            </div>
         );
     }
 }

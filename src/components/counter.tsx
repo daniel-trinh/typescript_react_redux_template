@@ -2,32 +2,26 @@ import * as React from 'react'
 import { Component, PureRenderMixin } from 'react'
 // import { Pure}react - addons - pure - render - mixin
 import { Map, List, Set, Record } from 'immutable'
-import * as Actions from '../actions'
+import * as Action from '../actions'
 import * as Store from '../store'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { CounterType } from '../actions'
+
 const NICE = 'pink';
 const SUPER_NICE = 'darkred';
 
-// interface Props {
-//     increment: number,
-//     color: string,
-//     counter: number,
-//     dispatch: Dispatch
-// }
-
 export class Counter extends Component<any, any> implements PureRenderMixin {
+    counterId: string
     counter: Record.IRecord<Store.Counter>
     dispatch: any
     interval: number
 
     constructor(props: any) {
         super(props);
-        const { dispatch, counterStore } = this.props;
+        const { dispatch, counter } = this.props;
         this.dispatch = dispatch
-        console.log(counterStore)
-        this.counter = counterStore
+        this.counter = counter
         this.interval = (setInterval(() => this.tick(), this.counter.intervalPeriod));
     }
 
@@ -35,7 +29,7 @@ export class Counter extends Component<any, any> implements PureRenderMixin {
         const { dispatch, counter } = this.props;
         dispatch({
             type: CounterType.INCREMENT,
-            increment: this.props.increment
+            counterId: counter.id
         })
     }
 
@@ -43,17 +37,12 @@ export class Counter extends Component<any, any> implements PureRenderMixin {
         clearInterval(this.interval);
     }
 
-    componentDidMount(): void {
-        const { dispatch, userId } = this.props;
-        console.log(userId)
-        // dispatch(loadUser(userId));
-    }
     render(): JSX.Element {
         const { dispatch, counter } = this.props;
         return (
-            <h1 style={{ color: this.props.color }}>
-                Counter ({this.props.increment}): {counter}
-                </h1>
+            <h1 style={{ color: counter.color }}>
+                Counter ({counter.count})
+            </h1>
         );
     }
 }
@@ -62,22 +51,18 @@ interface StateProps {
     counter: Store.CounterStore
 }
 
-function mapStateToProps(state: Store.RootStoreRecord, componentProps: any): StateProps {
+function mapStateToProps(state: Store.RootStoreRecord, props: any): StateProps {
     return {
         counter: state.counters
     }
 }
 
-export default connect((state: Store.RootStoreRecord, componentProps: any) => {
-    var counter = state.counters.get(componentProps.counter.id, componentProps.counter)
-    if (state.counters.has(componentProps.counter.id)) {
-        return {counter: counter}
+export default connect((state: Store.RootStoreRecord, props: any) => {
+    var counter = state.counters.get(props.counterId)
+    if (state.counters.has(props.counterId)) {
+        return { counter: counter }
     } else {
-        Store.store.dispatch() // this would be moved to where the http call to a real DB would happen
-        return {counter: counter}
-    }
-    console.log(state.counters.get(componentProps.counter.id, componentProps.counter))
-    return {
-        counter: state.counters.get(componentProps.counter.id, componentProps.counter)
+        console.log(`CounterID ${props.counterId} not found in store`)
+        return {counter: null}
     }
 })(Counter)

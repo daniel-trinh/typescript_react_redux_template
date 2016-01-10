@@ -6,14 +6,10 @@ export enum CounterType {
     INSERT
 }
 
-export interface AlterCounter {
-    type: CounterType,
-    counterId: string
+export interface Counter {
+    type: CounterType
+    counterId?: string
+    counter?: CounterRecord
 }
 
-export interface InsertCounter {
-  type: CounterType,
-
-}
-
-export type Action = AlterCounter
+export type Actions = Counter
