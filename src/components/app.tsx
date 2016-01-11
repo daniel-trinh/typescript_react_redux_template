@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { Component } from 'react'
-import {Map, List, Set} from 'immutable'
+import * as I from 'immutable'
 import * as Actions from '../actions'
 import * as Store from '../store'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { CounterType } from '../actions'
 import Counter from './counter'
-
+import * as UI from 'material-ui'
 export const NICE = 'pink';
 export const SUPER_NICE = 'darkred';
 
@@ -39,11 +39,12 @@ export class App extends Component<any, any> {
     }
 
     render(): JSX.Element {
+        // var wut = fetch("http://services.runescape.com/m=itemdb_rs/bestiary/bestiaryNames.json?letter=Y").then(x => console.log(x.status))
         return (
-            <div>
+            <UI.List subheader="Counters">
                 <Counter counterId="1"/>
                 <Counter counterId="2"/>
-            </div>
+            </UI.List>
         );
     }
 }

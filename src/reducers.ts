@@ -13,7 +13,6 @@ function counter(
     case CounterType.INCREMENT:
       var c = state.get(action.counterId)
       var count: number = c.count
-      console.log(count)
       return state.set(c.id, c.set("count", count + c.increment))
     case CounterType.DECREMENT:
       var c = state.get(action.counterId)

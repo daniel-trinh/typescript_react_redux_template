@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Component, PureRenderMixin } from 'react'
 // import { Pure}react - addons - pure - render - mixin
 import { Map, List, Set, Record } from 'immutable'
+import * as UI from 'material-ui'
 import * as Action from '../actions'
 import * as Store from '../store'
 import { Dispatch } from 'redux'
@@ -40,9 +41,10 @@ export class Counter extends Component<any, any> implements PureRenderMixin {
     render(): JSX.Element {
         const { dispatch, counter } = this.props;
         return (
-            <h1 style={{ color: counter.color }}>
-                Counter ({counter.count})
-            </h1>
+            <UI.ListItem  
+                primaryText={`Counter (${ counter.count })`}
+                style={{ color: counter.color }}>
+            </UI.ListItem>
         );
     }
 }

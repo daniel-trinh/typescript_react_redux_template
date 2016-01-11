@@ -9,8 +9,11 @@ https://github.com/gaearon/react-transform-boilerplate
 # Instructions
 
 ## Download dependencies
-`npm install typings --global`
+
 `npm install`
+
+`npm install typings --global`
+
 `typings install`
 
 # Start dev server with hot code reloading
