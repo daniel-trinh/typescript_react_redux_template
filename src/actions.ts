@@ -1,4 +1,4 @@
-import { CounterRecord, CounterStore, store } from "./store"
+import * as Store from './store'
 
 export enum CounterType {
     DECREMENT,
@@ -9,7 +9,5 @@ export enum CounterType {
 export interface Counter {
     type: CounterType
     counterId?: string
-    counter?: CounterRecord
+    counter?: Store.Counter
 }
-
-export type Actions = Counter

@@ -12,17 +12,23 @@ import { CounterType } from '../actions'
 const NICE = 'pink';
 const SUPER_NICE = 'darkred';
 
-export class Counter extends Component<any, any> implements PureRenderMixin {
-    counterId: string
-    counter: Record.IRecord<Store.Counter>
-    dispatch: any
-    interval: number
+interface Props {
+    dispatch?: any,
+    counter?: Store.Counter,
+    counterId?: string
+}
+
+export class Counter extends Component<Props, any> {
+    counterId: string;
+    counter: Store.Counter;
+    dispatch: any;
+    interval: number;
 
     constructor(props: any) {
         super(props);
         const { dispatch, counter } = this.props;
-        this.dispatch = dispatch
-        this.counter = counter
+        this.dispatch = dispatch;
+        this.counter = counter;
         this.interval = (setInterval(() => this.tick(), this.counter.intervalPeriod));
     }
 
@@ -53,18 +59,18 @@ interface StateProps {
     counter: Store.CounterStore
 }
 
-function mapStateToProps(state: Store.RootStoreRecord, props: any): StateProps {
-    return {
-        counter: state.counters
-    }
-}
+// function mapStateToProps(state: Store.Data, props: any): StateProps {
+//     return {
+//         counter: state.counters
+//     }
+// }
 
-export default connect((state: Store.RootStoreRecord, props: any) => {
-    var counter = state.counters.get(props.counterId)
-    if (state.counters.has(props.counterId)) {
+export default connect((state: Store.Data, props: any) => {
+    var counter = state.counters[props.counterId];
+    if (props.counterId in state.counters) {
         return { counter: counter }
     } else {
-        console.log(`CounterID ${props.counterId} not found in store`)
+        console.log(`CounterID ${props.counterId} not found in store`);
         return {counter: null}
     }
 })(Counter)
