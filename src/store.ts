@@ -38,6 +38,4 @@ export interface Todo {
     completed: boolean;
 };
 
-export type TodoList = Immutable.List<Immutable.Record.IRecord<Todo>>;
-
 export const store = createStore(reducers,InitialStore);

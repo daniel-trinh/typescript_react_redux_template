@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Component } from 'react'
-import * as I from 'immutable'
 import * as Actions from '../actions'
 import * as Store from '../store'
 import { Dispatch } from 'redux'

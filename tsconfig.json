@@ -12,11 +12,7 @@
   "exclude": [
     "dist",
     "node_modules",
-    "typings/browser/ambient",
-    "typings/browser/definitions",
-    "typings/main/ambient",
-    "typings/main/definitions",
-    "typings/main.d.ts",
+    "typings/index.d.ts",
     "src/typescript_overrides"
   ]
 }

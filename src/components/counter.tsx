@@ -1,7 +1,5 @@
 import * as React from 'react'
-import { Component, PureRenderMixin } from 'react'
 // import { Pure}react - addons - pure - render - mixin
-import { Map, List, Set, Record } from 'immutable'
 import * as UI from 'material-ui'
 import * as Action from '../actions'
 import * as Store from '../store'
@@ -18,7 +16,7 @@ interface Props {
     counterId?: string
 }
 
-export class Counter extends Component<Props, any> {
+export class Counter extends React.Component<Props, any> {
     counterId: string;
     counter: Store.Counter;
     dispatch: any;
@@ -56,16 +54,10 @@ export class Counter extends Component<Props, any> {
 }
 
 interface StateProps {
-    counter: Store.CounterStore
+    counter: Store.Counter
 }
 
-// function mapStateToProps(state: Store.Data, props: any): StateProps {
-//     return {
-//         counter: state.counters
-//     }
-// }
-
-export default connect((state: Store.Data, props: any) => {
+function mapStateToProps(state: Store.Data, props: Props): StateProps {
     var counter = state.counters[props.counterId];
     if (props.counterId in state.counters) {
         return { counter: counter }
@@ -73,4 +65,6 @@ export default connect((state: Store.Data, props: any) => {
         console.log(`CounterID ${props.counterId} not found in store`);
         return {counter: null}
     }
-})(Counter)
+}
+
+export default connect(mapStateToProps)(Counter as any)
