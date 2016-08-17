@@ -9,6 +9,7 @@ interface Debug {
 
 interface SubStores {
     counters: CounterStore
+    quizzes: ActiveQuizzes
 }
 
 export interface Counter {
@@ -25,11 +26,25 @@ export interface CounterStore {
     [counterId: string]: Counter
 }
 
+export interface ActiveQuizzes {
+    multipleChoice?: MultipleChoiceQuiz
+}
+
+export interface MultipleChoiceQuiz {
+    question: string
+    choices: Array<{
+        text: string,
+        selected: boolean
+    }>
+}
+
 export const InitialStoreMap: Data = {
     isLoading: false,
     error: null,
-    counters: {}
+    counters: {},
+    quizzes: {}
 };
+
 export const InitialStore = InitialStoreMap;
 
 export interface Todo {

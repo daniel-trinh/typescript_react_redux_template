@@ -31,13 +31,22 @@ function counter(state:Store.CounterStore = {},
     }
 }
 
-export function reducers(state:Data, action:Action.Counter): Data {
-    return {
+function quiz(state: Store.ActiveQuizzes, action: Action.Quiz): Store.ActiveQuizzes {
+    switch (action.type) {
+        default:
+            return state
+    }
+}
+
+export function reducers(state:Data, action:any): Data {
+    return Object.assign({}, state, {
         counters: counter(
             state.counters,
             action
         ),
-        isLoading: false,
-        error: null
-    };
+        multipleChoice: quiz(
+            state.quizzes,
+            action
+        )
+    });
 }

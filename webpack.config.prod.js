@@ -4,6 +4,8 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
+    'webpack-dev-server/client?http://0.0.0.0:3000',
+    'webpack/hot/only-dev-server',
     './src/components/index',
     './index.tsx',
   ],
@@ -32,12 +34,11 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
-      test: /\.tsx?$/, loader: 'babel-loader!ts-loader'
-    },{
-      test: /\.jsx?$/,
-      loaders: ['babel'],
+    loaders: [{
+      test: /\.tsx?$/,
+      loader: 'babel-loader!ts-loader',
       include: path.join(__dirname, 'src')
-    }]
+    }
+    ]
   }
 };

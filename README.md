@@ -16,5 +16,11 @@ https://github.com/gaearon/react-transform-boilerplate
 
 `typings install`
 
-# Start dev server with hot code reloading
+## Start dev server with hot code reloading
 `npm start`
+
+## Adding new dependencies
+
+`npm install --save react-router`
+
+`typings install react-router --source=dt --global --save`

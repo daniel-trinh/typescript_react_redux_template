@@ -11,3 +11,13 @@ export interface Counter {
     counterId?: string
     counter?: Store.Counter
 }
+
+export enum QuizType {
+    MULTIPLECHOICE,
+    TEXTBOX,
+    MULTIPLESELECT
+}
+
+export interface Quiz {
+    type: QuizType
+}
